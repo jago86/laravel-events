@@ -20,6 +20,9 @@ class SessionStarted
      */
     public function __construct(public User $user)
     {
+        info('Sesión iniciada.', [
+            'user' => $user,
+        ]);
     }
 
 }
