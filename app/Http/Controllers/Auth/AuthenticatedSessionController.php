@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\SessionDestroyed;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Events\SessionStarted;
@@ -39,7 +40,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $user = Auth::user();
+
         Auth::guard('web')->logout();
+
+        SessionDestroyed::dispatch($user);
 
         $request->session()->invalidate();
 
