@@ -13,6 +13,6 @@ class SendLoginNotification
      */
     public function handle(SessionStarted $event): void
     {
-        info("Enviado notificación de inicio de sesión para el usuario: {$event->user->email}.");
+        info("💪 Enviado notificación de inicio de sesión para el usuario: {$event->user->email}.");
     }
 }

@@ -20,7 +20,7 @@ class SessionDestroyed
      */
     public function __construct(public User $user)
     {
-        info("Sesión cerrada", [
+        info("📢 Sesión cerrada", [
             'user' => $user,
         ]);
     }

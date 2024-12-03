@@ -20,7 +20,7 @@ class SuspiciousLoginDetected
      */
     public function __construct(public User $user, public array $request)
     {
-        info("Inicio de sesión sospechoso detectado para el usuario: {$user->name}.", $request);
+        info("📢 Inicio de sesión sospechoso detectado para el usuario: {$user->name}.", $request);
     }
 
     /**

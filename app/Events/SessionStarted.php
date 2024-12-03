@@ -20,7 +20,7 @@ class SessionStarted
      */
     public function __construct(public User $user, public array $request)
     {
-        info('Sesión iniciada.', [
+        info('📢 Sesión iniciada.', [
             'user' => $user,
         ]);
     }

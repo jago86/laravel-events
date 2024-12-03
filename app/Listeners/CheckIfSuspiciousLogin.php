@@ -14,7 +14,7 @@ class CheckIfSuspiciousLogin
      */
     public function handle(SessionStarted $event): void
     {
-        info("Verificando si el inicio de sesión es sospechoso para el usuario: {$event->user->name}.");
+        info("💪 Verificando si el inicio de sesión es sospechoso para el usuario: {$event->user->name}.");
 
         //
         //

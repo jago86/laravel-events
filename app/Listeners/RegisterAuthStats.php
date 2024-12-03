@@ -9,6 +9,6 @@ class RegisterAuthStats
 {
     public function handle(SessionStarted|SessionDestroyed $event)
     {
-        info("Registrando estadísticas de autenticación para el usuario: {$event->user->name}.");
+        info("💪 Registrando estadísticas de autenticación para el usuario: {$event->user->name}.");
     }
 }
