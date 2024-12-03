@@ -28,7 +28,11 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
-        SessionStarted::dispatch(Auth::user());
+        SessionStarted::dispatch(Auth::user(), [
+            'headers' => $request->headers->all(),
+            'body' => $request->all(),
+            'ip' => $request->ip(),
+        ]);
 
         $request->session()->regenerate();
 
