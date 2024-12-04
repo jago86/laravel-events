@@ -4,8 +4,9 @@ namespace App\Listeners;
 
 use Illuminate\Events\Dispatcher;
 use App\Events\SuspiciousLoginDetected;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SuspiciousLoginDetectedSubscriber
+class SuspiciousLoginDetectedSubscriber implements ShouldQueue
 {
 
     public function subscribe(Dispatcher $events)

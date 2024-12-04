@@ -6,7 +6,7 @@ use App\Events\SuspiciousLoginDetected;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SuspendUserAccount
+class SuspendUserAccount implements ShouldQueue
 {
     /**
      * Handle the event.

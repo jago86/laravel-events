@@ -7,7 +7,7 @@ use App\Events\SuspiciousLoginDetected;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CheckIfSuspiciousLogin
+class CheckIfSuspiciousLogin implements ShouldQueue
 {
     /**
      * Handle the event.
