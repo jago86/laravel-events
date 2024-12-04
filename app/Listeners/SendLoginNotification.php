@@ -13,7 +13,6 @@ class SendLoginNotification implements ShouldQueue
      */
     public function handle(SessionStarted $event): void
     {
-        sleep(6);
         info("💪 Enviado notificación de inicio de sesión para el usuario: {$event->user->email}.");
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App\Listeners;
 
+use App\Jobs\SuspendUserAccount;
 use App\Events\SuspiciousLoginDetected;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Jobs\SendSuspendedUserAccountNotification;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CheckIfSuspendUserAccount implements ShouldQueue
+class CheckIfSuspendUserAccount
 {
     /**
      * Handle the event.
@@ -15,8 +17,8 @@ class CheckIfSuspendUserAccount implements ShouldQueue
     {
         // Determinar si el usuario debe ser suspendido
         if (true) {
-            info("💪 Suspendiendo la cuenta del usuario: {$event->user->name}.");
-            info("💪 Enviado email de notificacion de cuentaa suspenda: {$event->user->name}.");
+            SuspendUserAccount::dispatch($event->user);
+            SendSuspendedUserAccountNotification::dispatch($event->user);
         }
     }
 }
