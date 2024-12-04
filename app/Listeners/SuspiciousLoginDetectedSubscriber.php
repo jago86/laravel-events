@@ -11,14 +11,14 @@ class SuspiciousLoginDetectedSubscriber implements ShouldQueue
 
     public function subscribe(Dispatcher $events)
     {
-        $events->listen(
-            SuspiciousLoginDetected::class,
-            [SuspendUserAccount::class, 'handleSuspendUserAccount'],
-        );
-        $events->listen(
-            SuspiciousLoginDetected::class,
-            [SuspendUserAccount::class, 'handleSendEmailNotification'],
-        );
+        // $events->listen(
+        //     SuspiciousLoginDetected::class,
+        //     [SuspendUserAccount::class, 'handleSuspendUserAccount'],
+        // );
+        // $events->listen(
+        //     SuspiciousLoginDetected::class,
+        //     [SuspendUserAccount::class, 'handleSendEmailNotification'],
+        // );
 
         return [
             SuspiciousLoginDetected::class => 'handleSendEmailAlertToUser',
