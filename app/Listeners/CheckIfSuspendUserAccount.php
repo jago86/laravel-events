@@ -36,13 +36,13 @@ class CheckIfSuspendUserAccount
             // })->dispatch();
 
             // Chain
-            // Bus::chain([
-            //     new SuspendUserAccount($event->user),
-            //     new SendSuspendedUserAccountNotification($event->user),
-            // ])->dispatch();
+            Bus::chain([
+                new SuspendUserAccount($event->user),
+                new SendSuspendedUserAccountNotification($event->user),
+            ])->dispatch();
 
-            SuspendUserAccount::dispatch($event->user);
-            SendSuspendedUserAccountNotification::dispatch($event->user);
+            // SuspendUserAccount::dispatch($event->user);
+            // SendSuspendedUserAccountNotification::dispatch($event->user);
         }
     }
 }
