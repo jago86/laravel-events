@@ -3,12 +3,13 @@
 namespace App\Jobs;
 
 use App\Models\User;
+use Illuminate\Bus\Batchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class SendSuspendedUserAccountNotification implements ShouldQueue
 {
-    use Queueable;
+    use Batchable, Queueable;
 
     /**
      * Create a new job instance.
