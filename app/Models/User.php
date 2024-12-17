@@ -6,11 +6,31 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Events\UserCreated;
+use App\Events\CreatingUser;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+
+    protected $dispatchesEvents = [
+        'creating' => CreatingUser::class,
+        'created' => UserCreated::class,
+    ];
+
+    // public static function booted(): void
+    // {
+    //     static::creating(function (User $user) {
+    //         info("Estás a punto de crear un usuario", $user->toArray());
+    //         info("Número de usuarios:", [User::count()]);
+    //     });
+
+    //     static::created(function (User $user) {
+    //         info("Se acaba de crear un usuario", $user->toArray());
+    //         info("Número de usuarios:", [User::count()]);
+    //     });
+    // }
 
     /**
      * The attributes that are mass assignable.
