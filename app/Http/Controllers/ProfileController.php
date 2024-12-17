@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Events\ProfilePictureUploaded;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -30,6 +32,19 @@ class ProfileController extends Controller
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
+        }
+
+        if ($request->hasFile('picture')) {
+
+            if ($request->user()->picture) {
+                Storage::disk('public')->delete($request->user()->picture);
+            }
+
+            $request->user()->picture = $request
+                ->file('picture')
+                ->store('profile-pictures', 'public');
+
+            ProfilePictureUploaded::dispatch($request->user());
         }
 
         $request->user()->save();
